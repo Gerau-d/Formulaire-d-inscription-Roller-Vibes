@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Formulaire d'inscription – Roller Vibes</title>
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; --card:#0b1220; --accent:#ff6b6b; --muted:#94a3b8; --glass: rgba(255,255,255,0.04);
+      --success:#16a34a;
+    }
+    *{box-sizing:border-box}
+    body{font-family:Inter,system-ui,Segoe UI,Roboto,"Helvetica Neue",Arial; margin:0; background:linear-gradient(180deg,#071028 0%, #071733 60%); color:#e6eef8; -webkit-font-smoothing:antialiased}
+    .container{max-width:850px;margin:36px auto;padding:28px}
+    .card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:14px; padding:20px; box-shadow: 0 8px 30px rgba(2,6,23,0.6); border:1px solid rgba(255,255,255,0.03)}
+    header{display:flex;gap:18px;align-items:top}
+    .logo{width:80px;height:80px;border-radius:12px; background-image: url("images/logo.jpeg");}
+    h1{margin:0;font-size:18px}
+    p.lead{margin:10px 0 0;color:var(--muted);font-size:12px}
+
+    .grid{display:grid;grid-template-columns:1fr 340px;gap:20px;margin-top:20px}
+    @media (max-width:1000px){.grid{grid-template-columns:1fr}}
+
+    table.form-table{width:100%;border-collapse:separate;border-spacing:0 12px}
+    table.form-table tr{vertical-align:top}
+    table.form-table td.header{width:180px;padding:16px 18px;background:var(--glass);border-radius:10px 0 0 10px;color:var(--muted);font-weight:600}
+    table.form-table td.content{background:rgba(255,255,255,0.02);padding:16px;border-radius:0 10px 10px 0}
+
+    label{display:block;margin-bottom:6px;font-size:13px}
+    input[type=text], input[type=number], input[type=email], input[type=tel], select, textarea{width:100%;padding:10px 12px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.06);color:inherit;font-size:14px}
+    textarea{min-height:100px;resize:vertical}
+
+    .checkboxes, .radios{display:flex;flex-wrap:wrap;gap:10px}
+    .control{display:inline-flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;background:transparent;border:1px solid rgba(255,255,255,0.03)}
+    .control input{margin:0}
+
+    .aside{background:linear-gradient(180deg,rgba(124,92,255,0.06),transparent);padding:18px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    .btn{display:inline-flex;align-items:center;gap:10px;padding:10px 16px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#7c5cff);border:none;color:white;font-weight:600;cursor:pointer}
+    .btn.secondary{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+
+    .form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:16px}
+
+    .error{color:#ff8b8b;font-size:13px;margin-top:6px}
+    .success{color:var(--success);font-weight:600}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="card">
+      <header>
+        <div class="logo">RV</div>
+        <div>
+          <h1>Formulaire d'inscription – Roller Vibes</h1>
+          <p class="lead">Roller Vibes est un grand rassemblement de passionnés de roller, ouvert à tous les niveaux.
+L’objectif est de réunir les pratiquants autour d’une randonnée conviviale, de promouvoir la sécurité, le bon entretien du matériel et l’esprit de partage qui anime la communauté roller.
+Un moment d’énergie, de musique et de bonne ambiance où chaque participant roule pour la même vibration : la passion du roller !
+</p>
+        </div>
+      </header>
+
+      <form id="rvForm">
+        <table class="form-table">
+          <tr>
+            <td class="header">1. Informations personnelles</td>
+            <td class="content">
+              <label>Nom et prénom *</label>
+              <input name="fullname" type="text" required>
+              <label>Âge *</label>
+              <input name="age" type="number" min="6" max="120" required>
+              <label>Nombre de ticket *</label>
+              <input name="ticket" type="number" min="1" max="5" required>
+              <label>Sexe</label>
+              <div class="radios">
+                <label class="control"><input type="radio" name="sexe" value="Homme" checked> Homme</label>
+                <label class="control"><input type="radio" name="sexe" value="Femme"> Femme</label>
+                <label class="control"><input type="radio" name="sexe" value="Autre"> Autre</label>
+              </div>
+              <label>Ville / Commune</label>
+              <input name="city" type="text">
+              <label>Téléphone / WhatsApp *</label>
+              <input name="phone" type="tel" required>
+              <label>Adresse e-mail</label>
+              <input name="email" type="email">
+            </td>
+          </tr>
+
+          <tr>
+            <td class="header">2. Type de participation</td>
+            <td class="content">
+              <div class="checkboxes">
+                <label class="control"><input type="checkbox" name="participation" value="Patineur"> Patineur / Patineuse</label>
+                <label class="control"><input type="checkbox" name="participation" value="Benevole"> Bénévole / Organisation</label>
+                <label class="control"><input type="checkbox" name="participation" value="Sponsor"> Sponsor / Partenaire</label>
+                <label class="control"><input id="part-autre" type="checkbox" name="participation" value="Autre"> Autre</label>
+                <input id="part-autre-text" name="participation_autre" type="text" placeholder="Précisez" style="display:none">
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="header">3. Niveau de pratique</td>
+            <td class="content">
+              <div class="radios">
+                <label class="control"><input type="radio" name="niveau" value="Debutant"> Débutant</label>
+                <label class="control"><input type="radio" name="niveau" value="Intermediaire"> Intermédiaire</label>
+                <label class="control"><input type="radio" name="niveau" value="Avance"> Avancé</label>
+                <label class="control"><input type="radio" name="niveau" value="Professionnel"> Professionnel</label>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="header">4. Équipement personnel</td>
+            <td class="content">
+              <div class="checkboxes">
+                <label class="control"><input type="checkbox" name="equip" value="Complet"> J’ai mon propre équipement complet</label>
+                <label class="control"><input type="checkbox" name="equip" value="Aide"> J’ai besoin d’un prêt</label>
+              </div>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="header">5. Motivation / Message</td>
+            <td class="content">
+              <textarea name="motivation" placeholder="Pourquoi souhaitez-vous participer ?"></textarea>
+            </td>
+          </tr>
+
+          <tr>
+            <td class="header">6. Autorisation et engagement</td>
+            <td class="content">
+              <label class="control"><input id="agree-risk" type="checkbox" name="agree_risk"> J’accepte de participer à mes risques *</label>
+              <label class="control"><input type="checkbox" name="agree_media"> J’autorise l’équipe à utiliser les photos/vidéos</label>
+            </td>
+          </tr>
+        </table>
+        <div class="form-actions">
+          <button type="submit" class="btn">S'inscrire</button>
+        </div>
+        <div id="message" style="margin-top:12px"></div>
+      </form>
+    </div>
+  </div>
+
+  <!-- EmailJS -->
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>
+    (function() {
+      emailjs.init("oRY1h5odNMuhDFNYp"); // ⚠️ remplace par ta clé publique EmailJS
+    })();
+
+    const form = document.getElementById('rvForm');
+    const message = document.getElementById('message');
+    const partAutre = document.getElementById('part-autre');
+    const partAutreText = document.getElementById('part-autre-text');
+
+    partAutre.addEventListener('change', e => {
+      partAutreText.style.display = e.target.checked ? 'block' : 'none';
+      if(!e.target.checked) partAutreText.value = '';
+    });
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      if(!form.fullname.value || !form.phone.value || !form.age.value || !form['agree_risk'].checked){
+        message.innerHTML = '<div class="error">Merci de remplir les champs obligatoires.</div>';
+        return;
+      }
+
+      const templateParams = {
+        fullname: form.fullname.value,
+        age: form.age.value,
+        sexe: form.sexe.value,
+        city: form.city.value,
+        phone: form.phone.value,
+        email: form.email.value,
+        participation: Array.from(document.querySelectorAll('input[name="participation"]:checked')).map(i=>i.value).join(', '),
+        participation_autre: form.participation_autre.value,
+        niveau: Array.from(form.niveau).find(r=>r.checked)?.value || '',
+        equip: Array.from(document.querySelectorAll('input[name="equip"]:checked')).map(i=>i.value).join(', '),
+        motivation: form.motivation.value
+      };
+
+      emailjs.send("service_uhxuq0k", "template_r4z5gq6", templateParams)
+        .then(() => {
+          message.innerHTML = '<div class="success">✅ Formulaire envoyé avec succès ! Vous recevrez une confirmation par e-mail.</div>';
+          form.reset();
+          partAutreText.style.display = 'none';
+        }, (error) => {
+          message.innerHTML = '<div class="error">Erreur lors de l’envoi : ' + error.text + '</div>';
+        });
+    });
+  </script>
+</body>
+</html>
